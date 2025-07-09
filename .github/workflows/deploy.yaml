@@ -22,10 +22,10 @@ jobs:
         run: npm install
 
       - name: Build Angular app with output to docs/
-        run: npx ng build --output-path docs --base-href /Wade-s-Wine-Watcher/
+        run: npx ng build --configuration production --base-href /Wade-s-Wine-Watcher/
 
       - name: Copy index.html to 404.html
-        run: cp docs/index.html docs/404.html
+        run: cp index.html 404.html
 
       - name: Commit and push docs to main branch
         run: |
