@@ -28,4 +28,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages             # The branch to deploy to
-          folder: dist/wades-wine-watcher  # Your exact build output
+          folder: dist/wades-wine-watcher/browser  # Your exact build output
