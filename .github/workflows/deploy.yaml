@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Angular app to GitHub Pages (docs folder)
 
 on:
   push:
@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -21,12 +21,18 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build Angular project
-        run: npx ng build --configuration production --base-href /Wade-s-Wine-Watcher/
+      - name: Build Angular app with output to docs/
+        run: npx ng build --output-path docs --base-href /Wade-s-Wine-Watcher/
 
+      - name: Copy index.html to 404.html
+        run: cp docs/index.html docs/404.html
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: dist/wades-wine-watcher/browser 
+      - name: Commit and push docs to main branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs
+          git commit -m "Deploy Angular app to docs folder for GitHub Pages" || echo "No changes to commit"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
