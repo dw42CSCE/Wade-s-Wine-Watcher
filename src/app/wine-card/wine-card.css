@@ -1,0 +1,66 @@
+.wine-card {
+  display: flex;
+  flex-direction: row; /* Desktop: horizontal layout */
+  justify-content: space-between; /* distribute space */
+  align-items: center; /* vertically center both sides */
+  background: #f4f4f4;
+  padding: 16px;
+  border-radius: 8px;
+  margin: 10px 0;
+  gap: 10px;
+}
+
+.wine-details {
+  order: 1;
+}
+
+.wine-bottle {
+  width: 120px;
+  height: auto;
+  filter: invert(1);
+}
+
+.progress-bottles {
+  display: flex;
+  align-items: center; /* Vertically center all children */
+  gap: 10px; /* optional spacing */
+  order: 2; /* Ensure at least 2 bottles are shown */
+}
+
+.arrow {
+  width: 30px;
+  height: auto;
+  margin: 0 10px; /* spacing */
+}
+
+
+@media (max-width: 768px) {
+  .wine-card {
+    flex-direction: column; /* Stack vertically on mobile */
+    align-items: flex-start;
+  }
+
+  .arrow {
+    width: 20px; /* Smaller arrows on mobile */
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .progress-bottles {
+    order: 1; /* Bottles on top */
+    display: flex; /* <-- ADD THIS! */
+    justify-content: center; /* Center horizontally */
+    flex-wrap: wrap; /* Optional: allow bottles to wrap if many */
+    width: 100%;
+  }
+
+  .wine-bottle {
+    width: 30px;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .wine-details {
+    order: 2;
+  }
+}

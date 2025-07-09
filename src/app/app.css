@@ -1,0 +1,38 @@
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: purple;
+  color: white;
+  padding: 10px 20px;
+  flex-wrap: nowrap;
+}
+
+.banner-image {
+  height: 50px; /* Smaller image height */
+  border: none;
+  margin: 0 5px;
+  padding: 0;
+  display: block;
+}
+
+.banner-title {
+  margin: 0;
+  font-size: 4vw; /* Slightly smaller responsive text */
+  white-space: nowrap;
+}
+
+a {
+  text-decoration: none;
+  color: white; /* Ensure the link is white */
+}
+
+@media (max-width: 500px) {
+  .banner-image {
+    height: 25px; /* Even smaller on mobile */
+  }
+
+  .banner-title {
+    font-size: 5vw; /* Adjust smaller on very small screens */
+  }
+}

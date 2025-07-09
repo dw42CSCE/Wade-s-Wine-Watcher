@@ -1,0 +1,7 @@
+<h2>Wine Dashboard</h2>
+
+@for (wine of wines; track wine.id) {
+    <div class="wine-dashboard-header">
+        <app-wine-card [wine]="wine" (click)="goToWine(wine.id)"></app-wine-card>
+    </div>
+}
