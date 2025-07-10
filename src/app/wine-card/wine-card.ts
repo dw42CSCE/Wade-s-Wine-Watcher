@@ -42,18 +42,24 @@ export class WineCard {
       const percent = this.getProgress(this.wine.startDate);
 
       if (rackCount == 0) {
-        this.wineImg1 = this.getWineImage(percent);
+        this.wineImg1 = this.getWineImage(percent*4);
       }
       if (rackCount == 1) {
-        this.wineImg2 = this.getWineImage(percent);
+        this.wineImg1 = 'wine1000.png';
+        this.wineImg2 = this.getWineImage(percent*2);
         this.arrow1filt = { filter: '' }; 
       }
       if (rackCount == 2) {
-        this.wineImg3 = this.getWineImage(percent);
+        this.wineImg1 = 'wine1000.png';
+        this.wineImg2 = 'wine1000.png';
+        this.wineImg3 = this.getWineImage(percent*1.3333);
         this.arrow1filt = { filter: '' }; 
         this.arrow2filt = { filter: '' };
       }
       if (rackCount == 3) {
+        this.wineImg1 = 'wine1000.png';
+        this.wineImg2 = 'wine1000.png';
+        this.wineImg3 = 'wine1000.png';
         this.wineImg4 = this.getWineImage(percent);
         this.arrow1filt = { filter: '' }; 
         this.arrow2filt = { filter: '' };
