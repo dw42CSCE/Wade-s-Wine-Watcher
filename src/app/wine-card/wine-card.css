@@ -17,7 +17,6 @@
 .wine-bottle {
   width: 120px;
   height: auto;
-  filter: invert(1);
 }
 
 .progress-bottles {
