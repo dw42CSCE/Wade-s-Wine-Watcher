@@ -1,5 +1,9 @@
 <h2>Wine Dashboard</h2>
 
+<button> 
+    <a routerLink="/newwine">Add New Wine</a>
+</button>
+
 @for (wine of wines; track wine.id) {
     <div class="wine-dashboard-header">
         <app-wine-card [wine]="wine" (click)="goToWine(wine.id)"></app-wine-card>

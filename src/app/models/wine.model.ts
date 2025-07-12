@@ -7,5 +7,4 @@ export interface Wine {
     startSpecificGravity: number;
     endSpecificGravity: number;
     rackDates: Date[];
-    users: number[];
 }

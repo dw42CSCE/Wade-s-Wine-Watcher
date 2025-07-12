@@ -43,16 +43,22 @@ export class WineCard {
 
       if (rackCount == 0) {
         this.wineImg1 = this.getWineImage(percent*4);
+        this.wineImg2 = 'wine0.png';
+        this.wineImg3 = 'wine0.png';
+        this.wineImg4 = 'wine0.png';
       }
       if (rackCount == 1) {
         this.wineImg1 = 'wine1000.png';
         this.wineImg2 = this.getWineImage(percent*2);
+        this.wineImg3 = 'wine0.png';
+        this.wineImg4 = 'wine0.png';
         this.arrow1filt = { filter: '' }; 
       }
       if (rackCount == 2) {
         this.wineImg1 = 'wine1000.png';
         this.wineImg2 = 'wine1000.png';
         this.wineImg3 = this.getWineImage(percent*1.3333);
+        this.wineImg4 = 'wine0.png';
         this.arrow1filt = { filter: '' }; 
         this.arrow2filt = { filter: '' };
       }
@@ -100,31 +106,38 @@ export class WineCard {
     return alc;
   }
 
-  public getProgress(startDate: Date): number {
-    const today = new Date();
+public getProgress(startDate: string | Date): number {
+  // Convert string to Date if needed
+  const start = startDate instanceof Date ? startDate : new Date(startDate);
+  const today = new Date();
 
-    // Calculate difference in days
-    const diffInMs = today.getTime() - startDate.getTime();
-    const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+  // Calculate difference in milliseconds
+  const diffInMs = today.getTime() - start.getTime();
+  const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
 
-    // Clamp progress between 0 and 100
-    let progress = (diffInDays / 120) * 100;
-    progress = Math.min(Math.max(progress, 0), 100); // restrict to [0, 100]
+  // Calculate progress as percentage of 120 days fermentation period
+  let progress = (diffInDays / 120) * 100;
 
-    console.log(`Progress for ${this.wine.name}: ${progress}%`);
+  // Clamp progress between 0 and 100
+  progress = Math.min(Math.max(progress, 0), 100);
 
-    progress = Math.round(progress); // Round to nearest integer
+  // Round to nearest integer
+  progress = Math.round(progress);
 
-    if (this.rackCount == 0) {
-      progress = Math.max(progress, 25);
-    } else if (this.rackCount == 1) {
-      progress = Math.max(progress, 50);
-    } else if (this.rackCount == 2) {
-      progress = Math.max(progress, 75);
-    } else if (this.rackCount == 3) {
-      progress = Math.max(progress, 100);
-    }
-
-    return progress;
+  // Adjust progress based on rackCount (assuming this.rackCount is set elsewhere)
+  if (this.rackCount === 0) {
+    progress = Math.max(progress, 25);
+  } else if (this.rackCount === 1) {
+    progress = Math.max(progress, 50);
+  } else if (this.rackCount === 2) {
+    progress = Math.max(progress, 75);
+  } else if (this.rackCount >= 3) {
+    progress = Math.max(progress, 100);
   }
+
+  console.log(`Progress for ${this.wine.name}: ${progress}%`);
+
+  return progress;
+}
+
 }

@@ -4,8 +4,8 @@ import { Wine } from '../models/wine.model';
 import { Router, RouterModule } from '@angular/router';
 import { User } from '../models/user.model';
 import { Input } from '@angular/core';
-import { UserService } from '../services/user';
-import { WineService } from '../services/wine';
+import { UserService } from '../services/userservice';
+import { WineService } from '../services/wineservice';
 
 @Component({
   selector: 'app-wine-dashboard',
@@ -21,18 +21,23 @@ export class WineDashboard {
   wines: Wine[] = [];
 
   ngOnInit() {
-    this.user = this.userServ.getUser();
-    if (!this.user) {
+    if (!this.userServ.checkToken()) {
       this.router.navigate(['login']);
     } else {
-      this.wines = this.getWines(this.user.id);
+      this.getWines();
     }
   }
 
-  getWines(userId: number): Wine[] {
-    return this.wineServ.getWines(userId)
-  }
-
+getWines(): void {
+  this.wineServ.getWines().subscribe(
+    (data: Wine[]) => {
+      this.wines = data;
+    },
+    (err) => {
+      console.error('Error fetching wines:', err);
+    }
+  );
+}
   goToWine(id: number) {
     this.router.navigate(['/wine', id]);
   }
