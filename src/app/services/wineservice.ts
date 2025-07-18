@@ -9,7 +9,11 @@ import { UserService } from './userservice';
 })
 export class WineService {
 
-  private apiUrl = 'https://wwwapi-fkdkdbhjeefbg8be.centralus-01.azurewebsites.net/api/wines'; // adjust if needed
+  private readonly isLocalhost = window.location.hostname === 'localhost';
+
+  private readonly apiUrl = this.isLocalhost
+  ? 'http://localhost:5094/api/'
+  : 'https://wwwapi-fkdkdbhjeefbg8be.centralus-01.azurewebsites.net/api/wines';
 
   constructor(private http: HttpClient, private userServ: UserService) {}
 
