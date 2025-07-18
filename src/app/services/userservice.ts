@@ -12,8 +12,8 @@ export class UserService {
   private readonly isLocalhost = window.location.hostname === 'localhost';
 
   private readonly apiUrl = this.isLocalhost
-  ? 'http://localhost:5094/api/'
-  : 'https://wwwapi-fkdkdbhjeefbg8be.centralus-01.azurewebsites.net/users';
+  ? 'http://localhost:5094/api/users'
+  : 'https://wwwapi-fkdkdbhjeefbg8be.centralus-01.azurewebsites.net/api/users';
   
   private token: LoginResponse | null = null;
 
