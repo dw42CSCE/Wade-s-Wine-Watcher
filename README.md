@@ -6,6 +6,8 @@ Link to Site: https://dw42csce.github.io/Wade-s-Wine-Watcher/
 
 Project is still in early dev, use **user1** and **password1**  to have a look around.
 
+Database is set to sleep after inactivity, so a delay may be seen if logging in. Wait 3-5 minutes after initial login attempt and try again, the database will be awake by that time. If an issue persists, message me on LinkedIn at www.linkedin.com/in/dallas-wade
+
 Final App Tech Stack:
 Angular
 C# ASP.NET

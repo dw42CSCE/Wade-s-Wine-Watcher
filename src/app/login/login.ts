@@ -19,7 +19,7 @@ export class Login {
         console.log(username, password)
         this.router.navigate(['/wine-dashboard']);
       } else {
-        alert('Invalid username or password');
+        alert('Login Failed\nCauses: \nUsername or Password Incorrect\nDatabase could be asleep to save money, wait 3 minutes and try again\nIf problem persists after delay, contact developer: Dallas Wade');
       }
     });
   }
