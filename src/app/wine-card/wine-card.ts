@@ -25,9 +25,9 @@ export class WineCard {
   arrow3filt = {filter: 'invert(.8)'};
 
   ngOnInit() {
+    this.rackCount = this.wine.rackDates.length;
     this.progress = this.getProgress(this.wine.startDate);
     this.abv = this.calculateABV(this.wine.startSpecificGravity, this.wine.endSpecificGravity);
-    const rackCount = this.wine.rackDates.length;
     this.setWineImages(); //sets wine images based on progress
   }
 
@@ -37,40 +37,38 @@ export class WineCard {
     this.wineImg3 = 'wine.png';
     this.wineImg4 = 'wine.png';
 
-    if (this.wine.rackDates.length > 0) {
-      const rackCount = this.wine.rackDates.length;
-      const percent = this.getProgress(this.wine.startDate);
 
-      if (rackCount == 0) {
-        this.wineImg1 = this.getWineImage(percent*4);
-        this.wineImg2 = 'wine0.png';
-        this.wineImg3 = 'wine0.png';
-        this.wineImg4 = 'wine0.png';
-      }
-      if (rackCount == 1) {
-        this.wineImg1 = 'wine1000.png';
-        this.wineImg2 = this.getWineImage(percent*2);
-        this.wineImg3 = 'wine0.png';
-        this.wineImg4 = 'wine0.png';
-        this.arrow1filt = { filter: '' }; 
-      }
-      if (rackCount == 2) {
-        this.wineImg1 = 'wine1000.png';
-        this.wineImg2 = 'wine1000.png';
-        this.wineImg3 = this.getWineImage(percent*1.3333);
-        this.wineImg4 = 'wine0.png';
-        this.arrow1filt = { filter: '' }; 
-        this.arrow2filt = { filter: '' };
-      }
-      if (rackCount == 3) {
-        this.wineImg1 = 'wine1000.png';
-        this.wineImg2 = 'wine1000.png';
-        this.wineImg3 = 'wine1000.png';
-        this.wineImg4 = this.getWineImage(percent);
-        this.arrow1filt = { filter: '' }; 
-        this.arrow2filt = { filter: '' };
-        this.arrow3filt = { filter: '' };
-      }
+    const percent = this.getProgress(this.wine.startDate);
+
+    if (this.rackCount == 0) {
+      this.wineImg1 = this.getWineImage(percent*4);
+      this.wineImg2 = 'wine0.png';
+      this.wineImg3 = 'wine0.png';
+      this.wineImg4 = 'wine0.png';
+    }
+    if (this.rackCount == 1) {
+      this.wineImg1 = 'wine1000.png';
+      this.wineImg2 = this.getWineImage(percent*2);
+      this.wineImg3 = 'wine0.png';
+      this.wineImg4 = 'wine0.png';
+      this.arrow1filt = { filter: '' }; 
+    }
+    if (this.rackCount == 2) {
+      this.wineImg1 = 'wine1000.png';
+      this.wineImg2 = 'wine1000.png';
+      this.wineImg3 = this.getWineImage(percent*1.3333);
+      this.wineImg4 = 'wine0.png';
+      this.arrow1filt = { filter: '' }; 
+      this.arrow2filt = { filter: '' };
+    }
+    if (this.rackCount == 3) {
+      this.wineImg1 = 'wine1000.png';
+      this.wineImg2 = 'wine1000.png';
+      this.wineImg3 = 'wine1000.png';
+      this.wineImg4 = this.getWineImage(percent);
+      this.arrow1filt = { filter: '' }; 
+      this.arrow2filt = { filter: '' };
+      this.arrow3filt = { filter: '' };
     }
   }
 
@@ -126,13 +124,13 @@ public getProgress(startDate: string | Date): number {
 
   // Adjust progress based on rackCount (assuming this.rackCount is set elsewhere)
   if (this.rackCount === 0) {
-    progress = Math.max(progress, 25);
+    progress = Math.min(progress, 25);
   } else if (this.rackCount === 1) {
-    progress = Math.max(progress, 50);
+    progress = Math.min(progress, 50);
   } else if (this.rackCount === 2) {
-    progress = Math.max(progress, 75);
+    progress = Math.min(progress, 75);
   } else if (this.rackCount >= 3) {
-    progress = Math.max(progress, 100);
+    progress = Math.min(progress, 100);
   }
 
   console.log(`Progress for ${this.wine.name}: ${progress}%`);
