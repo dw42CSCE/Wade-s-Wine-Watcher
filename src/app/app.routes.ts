@@ -4,6 +4,7 @@ import { WineDashboard } from './wine-dashboard/wine-dashboard';
 import { WineDescription } from './wine-description/wine-description';
 import { Login } from './login/login';
 import { NewWine } from './newwine/newwine';
+import { Signup } from './signup/signup';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/wine-dashboard', pathMatch: 'full' },
@@ -11,6 +12,7 @@ export const routes: Routes = [
   { path: 'wine/:id', component: WineDescription },
   { path: 'login', component: Login },
   { path: 'newwine', component: NewWine }, // Assuming new wine uses the same component
+  { path: 'signup', component: Signup }, // Assuming new wine uses the same component
 ];
 
 @NgModule({
