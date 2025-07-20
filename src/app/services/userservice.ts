@@ -48,4 +48,17 @@ export class UserService {
     );
   }
 
+  signUp(username: string, password: string, email: string) : Observable<LoginResponse | null> {
+    const body = { username, password, email};
+    return this.http.post<LoginResponse>(`${this.apiUrl}/signup`, body).pipe(
+      tap(res => {
+        this.token = res;
+      }),
+      catchError(err => {
+        console.error('Signup Failed:', err);
+        return of(null);
+      })
+    )
+  }
+
 }
