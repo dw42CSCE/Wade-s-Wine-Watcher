@@ -29,6 +29,10 @@ export class Login {
       this.router.navigate(['/wine-dashboard']);
     }
   }
+  
+  goToSignup(){
+    this.router.navigate(["signup"]);
+  }
 
 }
 
