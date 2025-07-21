@@ -2,17 +2,16 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { UserService } from '../services/userservice';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
-  imports: [RouterModule],
+  imports: [RouterModule, FormsModule],
   templateUrl: './signup.html',
   styleUrl: './signup.css'
 })
 
 export class Signup {
-email: any;
-
   constructor(private userServ: UserService, private router: Router) {}
 
   // You will need to use this function on your front end. look at the form in login.html, lines 3-7, to get an idea of how it works. 
