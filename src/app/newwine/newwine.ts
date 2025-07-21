@@ -8,7 +8,8 @@ import { Component } from '@angular/core';
 })
 export class NewWine {
 
-  newWine(wineName: string, wineDescription: string, wineStartDate: string, wineStartSpecGrav: string, wineEndSpecGrav: string, wineIngredients: string, wineRackDates: string) {
+
+  newWine(wineName: string, wineDescription: string, wineStartDate: string, wineStartSpecGrav: string, wineEndSpecGrav: string, wineIngredients: string) {
     console.log('New wine added:', wineName);
   }
 }
