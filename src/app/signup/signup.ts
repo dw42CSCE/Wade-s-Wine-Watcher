@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class Signup {
+
   constructor(private userServ: UserService, private router: Router) {}
 
   // You will need to use this function on your front end. look at the form in login.html, lines 3-7, to get an idea of how it works. 
