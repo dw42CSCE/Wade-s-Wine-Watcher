@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 
 export class Signup {
-email: any;
 
   constructor(private userServ: UserService, private router: Router) {}
 
