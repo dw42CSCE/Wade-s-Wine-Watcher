@@ -6,6 +6,10 @@ import { Component } from '@angular/core';
   templateUrl: './newwine.html',
   styleUrl: './newwine.css'
 })
-export class NewWine {
+export class Newwine {
 
+
+  newWine(wineName: string, wineDescription: string, wineStartDate: string, wineStartSpecGrav: string, wineEndSpecGrav: string, wineIngredients: string, wineRackDates: string) {
+    console.log('New wine added:', wineName);
+  }
 }
