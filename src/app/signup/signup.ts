@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 
 export class Signup {
+email: any;
 
   constructor(private userServ: UserService, private router: Router) {}
 
@@ -23,5 +24,10 @@ export class Signup {
         alert('Signup Failed Failed\nCauses: \nUsername already exists\nDatabase could be asleep to save money, wait 3 minutes and try again\nIf problem persists after delay, contact developer: Dallas Wade');
       }
     });
+  }
+
+  goToLogin()
+  {
+    this.router.navigate(["login"]);
   }
 }

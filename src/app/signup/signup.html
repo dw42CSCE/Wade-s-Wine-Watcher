@@ -1,1 +1,11 @@
 <p>signup works!</p>
+<div class="signup-container">
+  <h2>Sign Up</h2>
+    <form (ngSubmit)="signUp(username.value, password.value, email.value)">
+        <input type="text" #username placeholder="Username" required />
+        <input type="password" #password placeholder="Password" required />
+        <input type="email" #email placeholder="Email" required />
+        <button type="submit">Sign Up</button>
+    </form>
+  <button (click)="goToLogin()">Login</button>
+</div>
