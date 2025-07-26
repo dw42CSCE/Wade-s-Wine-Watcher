@@ -1,7 +1,7 @@
 export interface Wine {
-    id: number;
+    id?: number;
     name: string;
-    ingredients: string[];
+    ingredients: string;
     description: string;
     startDate: Date;
     startSpecificGravity: number;

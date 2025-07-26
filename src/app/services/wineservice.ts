@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Wine } from '../models/wine.model';
-import { Observable } from 'rxjs';
+import { Observable, ObservedValueOf } from 'rxjs';
 import { UserService } from './userservice';
 
 @Injectable({
@@ -20,5 +20,20 @@ export class WineService {
   getWines(): Observable<Wine[]> {
     console.log("Got wines")
     return this.http.get<Wine[]>(this.apiUrl, {headers: new HttpHeaders ({'Authorization': 'Bearer ' + this.userServ.getToken()})});
+  }
+
+  newWine(wine: Wine): Observable<Wine> {
+    console.log("Added Wine");
+
+    const wine1 = {
+      Name: wine.name,
+      Description: wine.description,
+      StartDate: new Date(wine.startDate),
+      StartSpecificGravity: wine.startSpecificGravity,
+      EndSpecificGravity: wine.endSpecificGravity,
+      Ingredients: wine.ingredients,
+      RackDates: "" // convert array to string before sending
+    }
+    return this.http.post<Wine>(`${this.apiUrl}/addwine`, wine1, {headers: new HttpHeaders ({'Authorization': 'Bearer ' + this.userServ.getToken()})});
   }
 }
