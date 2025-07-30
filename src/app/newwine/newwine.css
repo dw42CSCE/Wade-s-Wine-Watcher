@@ -1,0 +1,42 @@
+.newwine-container {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.newwine-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.newwine-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.newwine-container input[type="text"],
+.newwine-container input[type="date"] {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.newwine-container button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: purple;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.newwine-container button:hover {
+  background-color: rgb(69, 0, 69);
+}

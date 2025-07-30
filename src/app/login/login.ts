@@ -2,16 +2,19 @@ import { Component } from '@angular/core';
 import { UserService } from '../services/userservice';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',
   styleUrls: ['./login.css'],
-  imports: [FormsModule]
+  imports: [FormsModule, ReactiveFormsModule]
 })
 export class Login {
 
-  constructor(private userServ: UserService, private router: Router) {}
+  logInForm!: FormGroup;
+
+  constructor(private userServ: UserService, private router: Router, private fb:FormBuilder) {}
 
   login(username: string, password: string) {
     this.userServ.login(username, password).subscribe(user => {
@@ -27,6 +30,10 @@ export class Login {
     if (this.userServ.checkToken() == true) {
       this.router.navigate(['/wine-dashboard']);
     }
+    this.logInForm = this.fb.group({
+      username:['', [Validators.required, Validators.minLength(3)]],
+      password: ['', [Validators.required]],
+    });
   }
   
   goToSignup(){

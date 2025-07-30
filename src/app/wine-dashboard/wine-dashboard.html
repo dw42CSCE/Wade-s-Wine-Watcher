@@ -1,11 +1,17 @@
-<h2>Wine Dashboard</h2>
+<div class="dashboard-header-container">
+  <h2>Wine Dashboard</h2>
 
-<button> 
-    <a routerLink="/newwine">Add New Wine</a>
-</button>
+  <button> 
+      <a routerLink="/newwine">Add New Wine</a>
+  </button>
+</div>
+
 
 @for (wine of wines; track wine.id) {
     <div class="wine-dashboard-header">
-        <app-wine-card [wine]="wine" (click)="goToWine(wine.id)"></app-wine-card>
+        <app-wine-card 
+        [wine]="wine" 
+        (click)="wine.id !== undefined && goToWine(wine.id)">
+        </app-wine-card>
     </div>
 }

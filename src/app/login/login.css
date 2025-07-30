@@ -39,3 +39,9 @@
 .login-container button:hover {
   background-color: rgb(69, 0, 69);
 }
+
+.error {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}

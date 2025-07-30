@@ -1,9 +1,40 @@
 <div class="signup-container">
   <h2>Sign Up</h2>
-    <form (ngSubmit)="signUp(username.value, password.value, email.value)">
-        <input type="text" #username placeholder="Username" required />
-        <input type="password" #password placeholder="Password" required />
-        <input type="email" #email placeholder="Email" required />
+    <form [formGroup]="signUpForm" (ngSubmit)="signUp(signUpForm.value.username, signUpForm.value.password, signUpForm.value.email)">
+        <input type="text" placeholder="Username" formControlName="username"/>
+           @if(signUpForm.get('username')?.invalid && (signUpForm.get('username')?.dirty || signUpForm.get('username')?.touched)){
+            <div class="error">
+              @if(signUpForm.get('username')?.errors?.['required']){
+                  <small>username is required</small>
+              }
+              @if(signUpForm.get('username')?.errors?.['minlength']){
+                <small>username must be 3+ characters</small>
+              }
+            </div>
+        }
+        <input type="password" placeholder="Password" required formControlName="password"/>
+           @if(signUpForm.get('password')?.invalid && (signUpForm.get('password')?.dirty || signUpForm.get('password')?.touched)){
+            <div class="error">
+              @if(signUpForm.get('password')?.errors?.['required']){
+                  <small>password is required</small>
+              }
+              @if(signUpForm.get('password')?.errors?.['minlength']){
+                <small>password must be 8+ characters</small>
+              }
+            </div>
+        }
+
+        <input type="email" placeholder="Email" required formControlName="email"/>
+          @if(signUpForm.get('email')?.invalid && (signUpForm.get('email')?.dirty || signUpForm.get('email')?.touched)){
+              <div class="error">
+                  @if(signUpForm.get('email')?.errors?.['required']){
+                      <small>email is required</small>
+                  }
+                  @if(signUpForm.get('email')?.errors?.['email']){
+                      <small>Must be valid email</small>
+                  }
+              </div>
+          }
         <button type="submit">Sign Up</button>
     </form>
   <button (click)="goToLogin()">Login</button>
