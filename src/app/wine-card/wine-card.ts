@@ -73,25 +73,33 @@ export class WineCard {
   }
 
   public getWineImage(percent: number): string {
-    // if (percent >= 100) {
-    //   return 'wine1000.png';
-    // } else if (percent >= 87.5) {
+    if (percent >= 100) {
+      return 'wine1000.png';
+    }
+    //  else if (percent >= 87.5) {
     //   return 'wine875.png';
-    // } else if (percent >= 75) {
-    //   return 'wine750.png';
-    // } else if (percent >= 62.5) {
-    //   return 'wine625.png';
-    // } else if (percent >= 50) {
-    //   return 'wine500.png';
-    // } else if (percent >= 37.5) {
-    //   return 'wine375.png';
-    // } else if (percent >= 25) {
-    //   return 'wine250.png';
-    // } else if (percent >= 12.5) {
-    //   return 'wine125.png';
-    // } else {
-    //   return 'wine0.png';
     // }
+    else if (percent >= 75) {
+      return 'wine750.png';
+    }
+    //  else if (percent >= 62.5) {
+    //   return 'wine625.png';
+    // }
+     else if (percent >= 50) {
+      return 'wine500.png';
+    }
+    //  else if (percent >= 37.5) {
+    //   return 'wine375.png';
+    // }
+     else if (percent >= 25) {
+      return 'wine250.png';
+    }
+    //  else if (percent >= 12.5) {
+    //   return 'wine125.png';
+    // }
+     else {
+      return 'wine0.png';
+    }
 
     return 'wine.png'; // remove after images are added
   }
