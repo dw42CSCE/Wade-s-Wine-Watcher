@@ -1,45 +1,94 @@
-.wine-dashboard-header {
-  text-align: left;
-  margin: 20px;
-  padding: 10px;
-  background-color:#f4f4f4;
-  border-radius: 20px;
-}
-
-.wine-dashboard-header:hover {
-  background-color: rgb(220, 220, 220);
-  cursor: pointer;
-}
-
-.dashboard-header-container {
+/* Overall dashboard layout */
+.dashboard-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #faf7f2 0%, #f1e3d3 100%);
+  padding: 40px 8%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 30px;
+  gap: 30px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Header section */
+.dashboard-header-container {
+  text-align: center;
+  color: #3a2e1f;
 }
 
 .dashboard-header-container h2 {
-  padding: 10px;
-  margin: 0 0 15px 0;
-  text-align: center;
+  font-family: "Playfair Display", serif;
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+  color: #4a2c15;
 }
 
-button {
-  padding: 10px;
-  font-size: 16px;
-  background-color: purple;
-  color: white;
+/* Add New Wine button */
+.add-wine-btn {
+  background: linear-gradient(135deg, #6b123c, #a94c84);
+  color: #fff;
+  font-size: 1rem;
+  padding: 12px 24px;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 10px rgba(107, 18, 60, 0.2);
 }
 
-button:hover {
-  background-color: rgb(69, 0, 69);
+.add-wine-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(107, 18, 60, 0.35);
 }
 
-a {
+.add-wine-btn a {
   text-decoration: none;
   color: inherit;
+  font-weight: 500;
+}
+
+/* Grid for all wine cards */
+.wine-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Individual wine card container */
+.wine-dashboard-header {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(140, 110, 80, 0.25);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+
+.wine-dashboard-header:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 20px;
+  }
+
+  .dashboard-header-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .add-wine-btn {
+    width: 100%;
+  }
+
+  .wine-grid {
+    grid-template-columns: 1fr;
+  }
 }

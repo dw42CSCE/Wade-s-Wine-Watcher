@@ -1,19 +1,32 @@
 <div class="wine-card">
-    <div class="progress-bottles">
-        <img [src]="wineImg1" alt="Wine Bottle 1" class="wine-bottle">
-        <img src="arrow.png" alt="Arrow" class="arrow" [ngStyle]="arrow1filt">
-        <img [src]="wineImg2" alt="Wine Bottle 2" class="wine-bottle">
-        <img src="arrow.png" alt="Arrow" class="arrow" [ngStyle]="arrow2filt">
-        <img [src]="wineImg3" alt="Wine Bottle 3" class="wine-bottle">
-        <img src="arrow.png" alt="Arrow" class="arrow" [ngStyle]="arrow3filt">
-        <img [src]="wineImg4" alt="Wine Bottle 4" class="wine-bottle">
-    </div>
-    <div class="wine-details">
-        <h3>{{ wine.name }}</h3>
-        <p>{{ wine.description }}</p>
-        <p>Target ABV: {{ abv }}%</p>
-        <p>Testing Progress: {{ progress }} </p>
-        <p>Start Date: {{ wine.startDate | date:'M/d/yyyy' }}</p>
+  <div class="progress-bottles">
+    <img [src]="wineImg1" alt="Wine Bottle 1" class="wine-bottle" />
 
+    <img src="arrow.png" alt="Arrow" class="arrow"
+         [ngStyle]="arrow1status === 'Active' ? arrowActiveStyle : arrow1filt" />
+
+    <img [src]="wineImg2" alt="Wine Bottle 2" class="wine-bottle" />
+
+    <img src="arrow.png" alt="Arrow" class="arrow"
+         [ngStyle]="arrow2status === 'Active' ? arrowActiveStyle : arrow2filt" />
+
+    <img [src]="wineImg3" alt="Wine Bottle 3" class="wine-bottle" />
+
+    <img src="arrow.png" alt="Arrow" class="arrow"
+         [ngStyle]="arrow3status === 'Active' ? arrowActiveStyle : arrow3filt" />
+
+    <img [src]="wineImg4" alt="Wine Bottle 4" class="wine-bottle" />
+  </div>
+  <div class="wine-details">
+    <h3>{{ wine.name }}</h3>
+    <p class="desc">{{ wine.description }}</p>
+    <div class="info">
+      <span><strong>Target ABV:</strong> {{ abv }}%</span>
+      <span><strong>Testing Progress:</strong> {{ progress }}%</span>
+      <span><strong>Start Date:</strong> {{ wine.startDate | date:'M/d/yyyy' }}</span>
     </div>
+    
+    <button class="delete-btn" (click)="deleteWine($event)">Delete Wine</button>
+  </div>
+
 </div>

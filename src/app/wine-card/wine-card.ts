@@ -1,6 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Wine } from '../models/wine.model';
 import { CommonModule, DatePipe } from '@angular/common';
+import { WineService } from '../services/wineservice';
+
 @Component({
   selector: 'app-wine-card',
   imports: [DatePipe, CommonModule],
@@ -23,12 +25,49 @@ export class WineCard {
   arrow1filt = {filter: 'invert(.8)'};
   arrow2filt = {filter: 'invert(.8)'};
   arrow3filt = {filter: 'invert(.8)'};
+  arrow1status = '';
+  arrow2status = '';
+  arrow3status = '';
+
 
   ngOnInit() {
     this.rackCount = this.wine.rackDates.length;
     this.progress = this.getProgress(this.wine.startDate);
     this.abv = this.calculateABV(this.wine.startSpecificGravity, this.wine.endSpecificGravity);
+    this.setArrows(); //sets arrow status based on rack count and progress
     this.setWineImages(); //sets wine images based on progress
+  }
+
+  public getArrowStyle(status: string) {
+    if (status === 'Active') {
+      return {
+        filter: 'drop-shadow(0 0 8px limegreen) brightness(1.4)',
+        animation: 'pulse-active 1.5s infinite ease-in-out',
+        opacity: 1
+      };
+    }
+    // default style for inactive arrows
+    return { filter: 'invert(.8)', opacity: 0.7 };
+  }
+
+  arrowActiveStyle = {
+    filter: 'invert(45%) sepia(100%) saturate(800%) hue-rotate(270deg) brightness(1.3)',
+    opacity: 1,
+  };
+
+  public setArrows() {
+    console.log(`Rack Count: ${this.rackCount}, Progress: ${this.progress}`);
+    if (this.progress == 25) {
+      this.arrow1status = 'Active';
+      console.log('Arrow 1 Active');
+    } else if (this.progress == 50) {
+      this.arrow2status = 'Active';
+      console.log('Arrow 2 Active');
+    } else if (this.progress == 75) {
+      this.arrow3status = 'Active';
+      console.log('Arrow 3 Active');
+    }
+    console.log(`Arrow Statuses: ${this.arrow1status}, ${this.arrow2status}, ${this.arrow3status}`);
   }
 
   public setWineImages() {
@@ -112,38 +151,62 @@ export class WineCard {
     return alc;
   }
 
-public getProgress(startDate: string | Date): number {
-  // Convert string to Date if needed
-  const start = startDate instanceof Date ? startDate : new Date(startDate);
-  const today = new Date();
+  public getProgress(startDate: string | Date): number {
+    // Convert string to Date if needed
+    const start = startDate instanceof Date ? startDate : new Date(startDate);
+    const today = new Date();
 
-  // Calculate difference in milliseconds
-  const diffInMs = today.getTime() - start.getTime();
-  const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+    // Calculate difference in milliseconds
+    const diffInMs = today.getTime() - start.getTime();
+    const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
 
-  // Calculate progress as percentage of 120 days fermentation period
-  let progress = (diffInDays / 120) * 100;
+    // Calculate progress as percentage of 120 days fermentation period
+    let progress = (diffInDays / 120) * 100;
 
-  // Clamp progress between 0 and 100
-  progress = Math.min(Math.max(progress, 0), 100);
+    // Clamp progress between 0 and 100
+    progress = Math.min(Math.max(progress, 0), 100);
 
-  // Round to nearest integer
-  progress = Math.round(progress);
+    // Round to nearest integer
+    progress = Math.round(progress);
 
-  // Adjust progress based on rackCount (assuming this.rackCount is set elsewhere)
-  if (this.rackCount === 0) {
-    progress = Math.min(progress, 25);
-  } else if (this.rackCount === 1) {
-    progress = Math.min(progress, 50);
-  } else if (this.rackCount === 2) {
-    progress = Math.min(progress, 75);
-  } else if (this.rackCount >= 3) {
-    progress = Math.min(progress, 100);
+    // Adjust progress based on rackCount (assuming this.rackCount is set elsewhere)
+    if (this.rackCount === 0) {
+      progress = Math.min(progress, 25);
+    } else if (this.rackCount === 1) {
+      progress = Math.min(progress, 50);
+    } else if (this.rackCount === 2) {
+      progress = Math.min(progress, 75);
+    } else if (this.rackCount >= 3) {
+      progress = Math.min(progress, 100);
+    }
+
+    console.log(`Progress for ${this.wine.name}: ${progress}%`);
+
+    return progress;
   }
 
-  console.log(`Progress for ${this.wine.name}: ${progress}%`);
+  constructor(private wineService: WineService) {}
 
-  return progress;
-}
+  @Output() onDeleted = new EventEmitter<void>();
+
+  deleteWine(event: MouseEvent) {
+    event.stopPropagation();
+    if (this.wine.id === undefined) return;
+
+    if (!confirm(`Are you sure you want to delete "${this.wine.name}"?`)) return;
+
+    this.wineService.removeWine(this.wine.id).subscribe({
+      next: () => {
+        this.onDeleted.emit(); // <-- notify parent
+      },
+      error: (err) => {
+        console.error(err);
+        alert("Failed to delete wine. Please try again.");
+      }
+    });
+  }
+
+
+
 
 }

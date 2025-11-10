@@ -13,6 +13,7 @@ import { WineService } from '../services/wineservice';
   templateUrl: './wine-dashboard.html',
   styleUrl: './wine-dashboard.css'
 })
+
 export class WineDashboard {
   @Input() user?: User | null;
 
@@ -28,16 +29,20 @@ export class WineDashboard {
     }
   }
 
-getWines(): void {
-  this.wineServ.getWines().subscribe(
-    (data: Wine[]) => {
-      this.wines = data;
-    },
-    (err) => {
-      console.error('Error fetching wines:', err);
-    }
-  );
-}
+  removeWine(wineId: number) {
+    this.wines = this.wines.filter(w => w.id !== wineId);
+  }
+
+  getWines(): void {
+    this.wineServ.getWines().subscribe(
+      (data: Wine[]) => {
+        this.wines = data;
+      },
+      (err) => {
+        console.error('Error fetching wines:', err);
+      }
+    );
+  }
   goToWine(id: number) {
     this.router.navigate(['/wine', id]);
   }

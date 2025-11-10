@@ -1,65 +1,148 @@
+/* ---- WINE CARD CONTAINER ---- */
 .wine-card {
   display: flex;
-  flex-direction: row; /* Desktop: horizontal layout */
-  justify-content: space-between; /* distribute space */
-  align-items: center; /* vertically center both sides */
-  background: #f4f4f4;
-  padding: 16px;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #faf7f2 0%, #f1e3d3 100%);
+  padding: 22px 26px;
+  border-radius: 16px;
+  margin: 16px 0;
+  gap: 18px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(140, 110, 80, 0.2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  backdrop-filter: blur(5px);
+}
+.wine-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(100, 60, 30, 0.2);
+}
+.delete-btn {
+  margin-top: 12px;
+  padding: 6px 14px;
+  background-color: #a63ec5; /* nice purple */
+  color: #fff;
+  font-size: 0.9rem;
+  border: none;
   border-radius: 8px;
-  margin: 10px 0;
-  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.wine-details {
-  order: 1;
+.delete-btn:hover {
+  background-color: #872bb0;
+  transform: scale(1.05);
 }
 
-.wine-bottle {
-  width: 120px;
-  height: auto;
-}
 
+/* ---- BOTTLE PROGRESS SECTION ---- */
 .progress-bottles {
   display: flex;
-  align-items: center; /* Vertically center all children */
-  gap: 10px; /* optional spacing */
-  order: 2; /* Ensure at least 2 bottles are shown */
+  align-items: center;
+  justify-content: center;
+  gap: 6px;                      /* tighter spacing */
+  width: 100%;
+  flex-wrap: nowrap;
+  overflow: hidden;              /* no scrollbars */
+  padding-bottom: 6px;
+}
+
+/* ---- IMAGES ---- */
+.wine-bottle {
+  width: 50px;                   /* ✅ smaller default bottle size */
+  height: auto;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.15));
+  transition: transform 0.25s ease;
+}
+
+.wine-bottle:hover {
+  transform: scale(1.08) rotate(-2deg);
 }
 
 .arrow {
-  width: 30px;
+  width: 14px;                   /* ✅ smaller arrow size */
   height: auto;
-  margin: 0 10px; /* spacing */
+  opacity: 0.7;
+  flex-shrink: 0;
+  transition: opacity 0.2s ease;
 }
 
+.arrow:hover {
+  opacity: 1;
+}
+
+/* ---- WINE DETAILS ---- */
+.wine-details {
+  width: 100%;
+  text-align: center;
+  color: #3a2e1f;
+}
+
+.wine-details h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  color: #4a2c15;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.wine-details .desc {
+  font-size: 0.95rem;
+  color: #5e4633;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wine-details .info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.9rem;
+  color: #3e3022;
+}
+
+.wine-details strong {
+  color: #7a5033;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 1200px) {
+  .wine-bottle {
+    width: 45px;
+  }
+  .arrow {
+    width: 12px;
+  }
+}
 
 @media (max-width: 768px) {
   .wine-card {
-    flex-direction: column; /* Stack vertically on mobile */
-    align-items: flex-start;
-  }
-
-  .arrow {
-    width: 20px; /* Smaller arrows on mobile */
-    margin: 0px;
-    padding: 0px;
+    padding: 18px;
+    gap: 14px;
   }
 
   .progress-bottles {
-    order: 1; /* Bottles on top */
-    display: flex; /* <-- ADD THIS! */
-    justify-content: center; /* Center horizontally */
-    flex-wrap: wrap; /* Optional: allow bottles to wrap if many */
-    width: 100%;
+    gap: 5px;
   }
 
   .wine-bottle {
-    width: 30px;
-    margin: 0px;
-    padding: 0px;
+    width: 40px;
   }
 
-  .wine-details {
-    order: 2;
+  .arrow {
+    width: 10px;
   }
+
+  .wine-details .desc {
+    max-width: 100%;
+  }
+}
+@keyframes pulse-active {
+  0% { transform: scale(1); filter: invert(45%) sepia(100%) saturate(600%) hue-rotate(80deg) brightness(1.2); }
+  50% { transform: scale(1.15); filter: invert(45%) sepia(100%) saturate(600%) hue-rotate(80deg) brightness(1.5); }
+  100% { transform: scale(1); filter: invert(45%) sepia(100%) saturate(600%) hue-rotate(80deg) brightness(1.2); }
 }

@@ -1,12 +1,15 @@
 <div class="newwine-container">
   <h2>Add New Wine</h2>
-    <form (ngSubmit)="newWine(wineName.value, wineDescription.value, wineStartDate.value, wineStartSpecGrav.value, wineEndSpecGrav.value, wineIngredients.value)">
-            <input type="text" #wineName placeholder="Wine Name" required />
-            <input type="text" #wineDescription placeholder="Wine Description" required />
-            <input type="date" #wineStartDate placeholder="Wine Start Date" required />
-            <input type="text" #wineStartSpecGrav placeholder="Wine Start Specific Gravity" required />
-            <input type="text" #wineEndSpecGrav placeholder="Wine End Specific Gravity" required />
-            <input type="text" #wineIngredients placeholder="Wine Ingredients" required />
-        <button type="submit">Add Wine</button>
-    </form>
+  <form (ngSubmit)="newWine(wineName.value, wineDescription.value, wineStartDate.value, wineStartSpecGrav.value, wineEndSpecGrav.value, wineIngredients.value)">
+    <input type="text" #wineName placeholder="Wine Name" required />
+    <input type="text" #wineDescription placeholder="Wine Description" required />
+
+    <label for="wineStartDate">Start Date</label>
+    <input type="date" #wineStartDate id="wineStartDate" required />
+
+    <input type="text" #wineStartSpecGrav placeholder="Wine Start Specific Gravity" required />
+    <input type="text" #wineEndSpecGrav placeholder="Wine End Specific Gravity" required />
+    <input type="text" #wineIngredients placeholder="Wine Ingredients" required />
+    <button type="submit">Add Wine</button>
+  </form>
 </div>
