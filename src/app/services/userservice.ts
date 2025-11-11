@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { LoginResponse } from '../models/loginresponse.model';
-
+import { throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -39,14 +39,15 @@ export class UserService {
     return this.http.post<LoginResponse>(`${this.apiUrl}/login`, body).pipe(
       tap(res => {
         this.token = res;
-        console.log('Token received: ', res);
+        console.log('Token received:', res);
       }),
       catchError(err => {
         console.error('Login failed:', err);
-        return of(null);
+        return throwError(() => err); // ✅ Re-emit the error so component can catch it
       })
     );
   }
+
 
   signUp(username: string, password: string, email: string) : Observable<LoginResponse | null> {
     const body = { username, password, email};

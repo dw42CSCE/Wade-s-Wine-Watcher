@@ -17,11 +17,20 @@ export class Login {
   constructor(private userServ: UserService, private router: Router, private fb:FormBuilder) {}
 
   login(username: string, password: string) {
-    this.userServ.login(username, password).subscribe(user => {
-      if (user) {
-        this.router.navigate(['/wine-dashboard']);
-      } else {
-        alert('Login Failed\nCauses: \nUsername or Password Incorrect\nDatabase could be asleep to save money, wait 3 minutes and try again\nIf problem persists after delay, contact developer: Dallas Wade');
+    this.userServ.login(username, password).subscribe({
+      next: user => {
+        if (user) {
+          this.router.navigate(['/wine-dashboard']);
+        }
+      },
+      error: err => {
+        if (err.status === 401) {
+          alert('Login Failed\nUsername or Password Incorrect');
+        } else {
+          alert(
+            'Login Failed\nDatabase is stateless and sleeps, wait 3 minutes and try again.\nDatabase will autostart after the first request is sent\nIf the problem persists after delay, contact developer: Dallas Wade.'
+          );
+        }
       }
     });
   }
