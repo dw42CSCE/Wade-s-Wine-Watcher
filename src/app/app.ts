@@ -15,6 +15,11 @@ export class App {
   constructor(private router: Router, private userServ:UserService) {}
 
   ngOnInit() {
+    this.userServ.pingDatabase().subscribe({
+      next: () => console.log('Database pinged on app startup'),
+      error: err => console.error('Database ping on startup failed:', err)
+    });
+
     if (!this.userServ.checkToken()) {
       const currentRoute = this.router.url;
       const allowedRoutes = ['/login', '/signup'];

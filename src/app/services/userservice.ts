@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { LoginResponse } from '../models/loginresponse.model';
-import { throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -57,9 +56,20 @@ export class UserService {
       }),
       catchError(err => {
         console.error('Signup Failed:', err);
-        return of(null);
+        return throwError(() => err);
       })
     )
+  }
+
+  pingDatabase() {
+    const wakeBody = { username: '', password: '' };
+    return this.http.post(`${this.apiUrl}/login`, wakeBody, { responseType: 'text' as 'json' }).pipe(
+      tap(() => console.log('Pinged database via login wake-up')),
+      catchError(err => {
+        console.error('Database ping failed:', err);
+        return throwError(() => err);
+      })
+    );
   }
 
 }
