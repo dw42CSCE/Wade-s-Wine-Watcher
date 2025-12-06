@@ -1,1 +1,85 @@
-<p>wine-description works!</p>
+<div class="wine-description-container">
+  <div class="header-row">
+    <button type="button" class="back-btn" (click)="goBack()">
+      <span class="chevron">←</span>
+      <span>Back</span>
+    </button>
+    <div class="header-text">
+      <h2>Edit Wine</h2>
+      <p>Update your wine details and keep track of events.</p>
+    </div>
+  </div>
+
+  @if(loadError){
+    <div class="status-banner error-banner">{{ loadError }}</div>
+  }
+
+  @if(successMessage){
+    <div class="status-banner success-banner">{{ successMessage }}</div>
+  }
+  @if(saveError){
+    <div class="status-banner error-banner">{{ saveError }}</div>
+  }
+
+  <form class="edit-form" [formGroup]="editForm" (ngSubmit)="submit()">
+    <div class="form-grid">
+      <label>
+        <span>Name</span>
+        <input type="text" formControlName="name" placeholder="Wine name"/>
+      </label>
+      <label>
+        <span>Description</span>
+        <textarea rows="3" formControlName="description" placeholder="Notes about this batch"></textarea>
+      </label>
+      <label>
+        <span>Start Date</span>
+        <input type="date" formControlName="startDate"/>
+      </label>
+      <label>
+        <span>Start Specific Gravity</span>
+        <input type="number" step="0.001" formControlName="startSpecificGravity" placeholder="e.g., 1.090"/>
+      </label>
+      <label>
+        <span>End Specific Gravity</span>
+        <input type="number" step="0.001" formControlName="endSpecificGravity" placeholder="e.g., 0.995"/>
+      </label>
+      <label>
+        <span>Ingredients (comma separated)</span>
+        <input type="text" formControlName="ingredients" placeholder="Grapes, Yeast, ..."/>
+      </label>
+      <label>
+        <span>Rack Dates (comma separated YYYY-MM-DD)</span>
+        <input type="text" formControlName="rackDates" placeholder="2025-01-10, 2025-02-01"/>
+      </label>
+    </div>
+
+    <div class="actions">
+      <button type="submit" [disabled]="isSaving || isLoadingWine">Save Changes</button>
+    </div>
+  </form>
+
+  <div class="events-panel">
+    <div class="panel-header">
+      <h3>Events</h3>
+      <button type="button" class="secondary-btn" disabled title="Event logic coming soon">+ New Event (coming soon)</button>
+    </div>
+    @if(events.length === 0){
+      <p class="muted">No events yet. Event tracking is coming soon.</p>
+    } @else {
+      <ul>
+        @for(event of events; track event.id){
+          <li>{{ event.title }}</li>
+        }
+      </ul>
+    }
+  </div>
+
+  @if(isLoadingWine || isSaving){
+    <div class="loading-overlay">
+      <div class="loading-card">
+        <div class="spinner"></div>
+        <p>{{ isLoadingWine ? 'Loading wine...' : 'Saving changes...' }}</p>
+      </div>
+    </div>
+  }
+</div>

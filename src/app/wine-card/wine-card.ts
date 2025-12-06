@@ -14,6 +14,8 @@ export class WineCard {
 
   progress: number = 0;
   abv: number = 0;
+  showDeleteConfirm = false;
+  isDeleting = false;
 
   rackCount: number = 0;
 
@@ -192,16 +194,28 @@ export class WineCard {
   deleteWine(event: MouseEvent) {
     event.stopPropagation();
     if (this.wine.id === undefined) return;
+    this.showDeleteConfirm = true;
+  }
 
-    if (!confirm(`Are you sure you want to delete "${this.wine.name}"?`)) return;
+  cancelDelete(event: MouseEvent) {
+    event.stopPropagation();
+    this.showDeleteConfirm = false;
+  }
 
+  confirmDelete(event: MouseEvent) {
+    event.stopPropagation();
+    if (this.wine.id === undefined) return;
+    this.isDeleting = true;
     this.wineService.removeWine(this.wine.id).subscribe({
       next: () => {
+        this.isDeleting = false;
+        this.showDeleteConfirm = false;
         this.onDeleted.emit(); // <-- notify parent
       },
       error: (err) => {
         console.error(err);
-        alert("Failed to delete wine. Please try again.");
+        this.isDeleting = false;
+        this.showDeleteConfirm = false;
       }
     });
   }

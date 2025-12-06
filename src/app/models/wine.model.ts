@@ -1,10 +1,10 @@
 export interface Wine {
     id?: number;
     name: string;
-    ingredients: string;
+    ingredients: string | string[];
     description: string;
-    startDate: Date;
+    startDate: Date | string;
     startSpecificGravity: number;
     endSpecificGravity: number;
-    rackDates: Date[];
+    rackDates: Date[] | string[];
 }

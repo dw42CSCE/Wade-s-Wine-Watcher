@@ -1,77 +1,86 @@
 /* Overall dashboard layout */
 .dashboard-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #faf7f2 0%, #f1e3d3 100%);
-  padding: 40px 8%;
+  padding: 36px 7%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
-  font-family: "Poppins", sans-serif;
+  gap: 28px;
+  color: #fbe9d7;
 }
 
 /* Header section */
 .dashboard-header-container {
-  text-align: center;
-  color: #3a2e1f;
+  width: 100%;
+  max-width: 1180px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: #fbe9d7;
+  flex-wrap: wrap;
 }
 
 .dashboard-header-container h2 {
-  font-family: "Playfair Display", serif;
-  font-size: 2.2rem;
-  margin-bottom: 15px;
-  color: #4a2c15;
+  font-family: "Libre Baskerville", "Playfair Display", Georgia, serif;
+  font-size: 2.1rem;
+  margin: 0;
+  color: #fde6d2;
+  letter-spacing: 0.8px;
 }
 
 /* Add New Wine button */
 .add-wine-btn {
-  background: linear-gradient(135deg, #6b123c, #a94c84);
-  color: #fff;
+  background: linear-gradient(120deg, #7a1023, #c04f3d, #dba255);
+  color: #0f0908;
   font-size: 1rem;
-  padding: 12px 24px;
+  padding: 12px 20px;
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 10px rgba(107, 18, 60, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  font-weight: 700;
+  letter-spacing: 0.4px;
 }
 
 .add-wine-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(107, 18, 60, 0.35);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.42);
+  filter: brightness(1.05);
 }
 
 .add-wine-btn a {
   text-decoration: none;
   color: inherit;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 /* Grid for all wine cards */
 .wine-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 24px;
+  gap: 26px;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1180px;
 }
 
 /* Individual wine card container */
 .wine-dashboard-header {
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(140, 110, 80, 0.25);
-  border-radius: 20px;
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(255, 215, 190, 0.1);
+  border-radius: 22px;
   padding: 16px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.3s ease, border-color 0.25s ease;
   cursor: pointer;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(12px);
 }
 
 .wine-dashboard-header:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-  background: rgba(255, 255, 255, 0.8);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+  border-color: rgba(243, 192, 143, 0.3);
 }
 
 /* Responsive */
@@ -81,11 +90,12 @@
   }
 
   .dashboard-header-container h2 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
 
   .add-wine-btn {
     width: 100%;
+    justify-content: center;
   }
 
   .wine-grid {

@@ -3,6 +3,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { WineService } from '../services/wineservice';
 import { Router } from '@angular/router';
 import { Wine } from '../models/wine.model';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-newwine',
@@ -12,7 +13,7 @@ import { Wine } from '../models/wine.model';
 })
 export class NewWine {
 
-  constructor(private wineServ: WineService, private router: Router) {}
+  constructor(private wineServ: WineService, private router: Router, private location: Location) {}
 
   newWine(wineName: string, wineDescription: string, wineStartDate: string, wineStartSpecGrav: string, wineEndSpecGrav: string, wineIngredients: string) {
     console.log('New wine added:', wineName);
@@ -45,5 +46,8 @@ export class NewWine {
 
   }
 
+  goBack() {
+    this.location.back();
+  }
 
 }

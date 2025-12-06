@@ -17,9 +17,25 @@ export class WineService {
 
   constructor(private http: HttpClient, private userServ: UserService) {}
 
+  getWine(id: number): Observable<Wine> {
+    return this.http.get<Wine>(`${this.apiUrl}/${id}`, {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + this.userServ.getToken()
+      })
+    });
+  }
+
   getWines(): Observable<Wine[]> {
     console.log("Got wines")
     return this.http.get<Wine[]>(this.apiUrl, {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + this.userServ.getToken()
+      })
+    });
+  }
+
+  updateWine(wineDto: any): Observable<Wine> {
+    return this.http.put<Wine>(this.apiUrl, wineDto, {
       headers: new HttpHeaders({
         'Authorization': 'Bearer ' + this.userServ.getToken()
       })

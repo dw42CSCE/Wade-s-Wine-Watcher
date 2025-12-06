@@ -1,61 +1,84 @@
 .newwine-container {
-  max-width: 500px;
-  margin: 40px auto;
-  padding: 25px;
-  background: linear-gradient(180deg, #ffffff, #f4e6f9);
+  max-width: 620px;
+  margin: 48px auto;
+  padding: 28px;
+  background: rgba(20, 12, 14, 0.82);
   border-radius: 20px;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
-  text-align: center;
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(255, 215, 190, 0.16);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 215, 190, 0.15);
+  color: #fbe9d7;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
 }
 
 .newwine-container h2 {
-  color: #3a003a;
-  margin-bottom: 20px;
-  font-size: 1.8rem;
+  color: #fce7d4;
+  margin: 0 0 12px 0;
+  font-size: 1.9rem;
+  text-align: center;
+  font-family: "Libre Baskerville", "Playfair Display", Georgia, serif;
+  letter-spacing: 0.7px;
 }
 
 .newwine-container form {
   display: flex;
   flex-direction: column;
-  text-align: left;
+  gap: 14px;
 }
 
 .newwine-container label {
-  font-size: 0.9rem;
-  color: #555;
+  font-size: 0.92rem;
+  color: rgba(251, 233, 215, 0.85);
   margin-bottom: 5px;
-  margin-top: 5px;
-  font-weight: 500;
+  display: block;
+  font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
 .newwine-container input[type="text"],
 .newwine-container input[type="date"] {
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 16px;
+  padding: 12px;
+  border: 1px solid rgba(255, 215, 190, 0.25);
+  border-radius: 12px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fbe9d7;
   outline: none;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.2s;
+}
+
+.newwine-container input::placeholder {
+  color: rgba(251, 233, 215, 0.6);
 }
 
 .newwine-container input:focus {
-  border-color: #800080;
-  box-shadow: 0 0 5px rgba(128, 0, 128, 0.4);
+  border-color: #f3c08f;
+  box-shadow: 0 0 12px rgba(243, 192, 143, 0.25);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .newwine-container button {
-  padding: 12px;
-  font-size: 16px;
-  background: linear-gradient(90deg, purple, #800080, rgb(69, 0, 69));
-  color: white;
+  padding: 14px;
+  font-size: 1rem;
+  background: linear-gradient(120deg, #7a1023, #c04f3d, #dba255);
+  color: #0f0908;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.25s ease, filter 0.2s;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-top: 6px;
 }
 
 .newwine-container button:hover {
-  background-color: rgb(69, 0, 69);
-  transform: scale(1.02);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(208, 120, 85, 0.35);
+  filter: brightness(1.04);
 }

@@ -1,5 +1,8 @@
 <div class="login-container">
   <h2>Login</h2>
+  @if(errorMessage){
+    <div class="status-banner error-banner">{{ errorMessage }}</div>
+  }
     <form [formGroup]="logInForm" (ngSubmit)="login(logInForm.value.username, logInForm.value.password)">
         <input type="text" placeholder="Username" formControlName="username"/>
            @if(logInForm.get('username')?.invalid && (logInForm.get('username')?.dirty || logInForm.get('username')?.touched)){
@@ -24,4 +27,12 @@
         <button type="submit">Login</button>
     </form>
   <button (click)="goToSignup()">Sign Up</button>
+  @if(isLoading){
+    <div class="loading-overlay">
+      <div class="loading-card">
+        <div class="spinner"></div>
+        <p>Signing you in...</p>
+      </div>
+    </div>
+  }
 </div>

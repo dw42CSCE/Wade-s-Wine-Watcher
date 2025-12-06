@@ -1,0 +1,219 @@
+.wine-description-container {
+  padding: 28px;
+  color: #fbe9d7;
+  max-width: 960px;
+  margin: 40px auto;
+  background: rgba(20, 12, 14, 0.82);
+  border-radius: 18px;
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(255, 215, 190, 0.16);
+  border: 1px solid rgba(255, 215, 190, 0.15);
+  backdrop-filter: blur(10px);
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: linear-gradient(120deg, #7a1023, #c04f3d, #dba255);
+  color: #0f0908;
+  border: 1px solid rgba(247, 214, 193, 0.35);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.25s ease, background-color 0.2s ease;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+.back-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  filter: brightness(1.05);
+  background-color: transparent;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+.back-btn .chevron {
+  font-size: 1.1rem;
+}
+
+.header-text h2 {
+  margin: 0;
+  font-family: "Libre Baskerville", "Playfair Display", Georgia, serif;
+  letter-spacing: 0.8px;
+}
+
+.header-text p {
+  margin: 4px 0 0;
+  color: rgba(251, 233, 215, 0.8);
+}
+
+.status-banner {
+  padding: 0.9rem 1.1rem;
+  border-radius: 12px;
+  margin: 0.5rem 0 1rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.error-banner {
+  background: rgba(240, 122, 101, 0.12);
+  border: 1px solid rgba(247, 214, 193, 0.35);
+  color: #f7d6c1;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+.success-banner {
+  background: rgba(103, 195, 141, 0.14);
+  border: 1px solid rgba(146, 240, 187, 0.35);
+  color: #c7f5dc;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+.edit-form {
+  margin-top: 12px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px 16px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: rgba(251, 233, 215, 0.9);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+input,
+textarea {
+  padding: 12px;
+  border: 1px solid rgba(255, 215, 190, 0.25);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fbe9d7;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(251, 233, 215, 0.6);
+}
+
+input:focus,
+textarea:focus {
+  border-color: #f3c08f;
+  box-shadow: 0 0 12px rgba(243, 192, 143, 0.25);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.actions button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(120deg, #7a1023, #c04f3d, #dba255);
+  color: #0f0908;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.25s ease, filter 0.2s;
+}
+
+.actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.actions button:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+  filter: brightness(1.05);
+}
+
+.events-panel {
+  margin-top: 28px;
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 215, 190, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.panel-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.secondary-btn {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(247, 214, 193, 0.35);
+  background: rgba(240, 122, 101, 0.12);
+  color: #f7d6c1;
+}
+
+.muted {
+  color: rgba(251, 233, 215, 0.7);
+  margin: 0;
+}
+
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.loading-card {
+  background: rgba(20, 12, 14, 0.9);
+  padding: 1.6rem 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 215, 190, 0.25);
+  color: #fbe9d7;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 3px solid rgba(247, 214, 193, 0.3);
+  border-top-color: #f3c08f;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

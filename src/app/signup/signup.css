@@ -1,47 +1,133 @@
 .signup-container {
-  background: #fff;
-  padding: 2rem;
-  max-width: 350px;
+  background: rgba(20, 12, 14, 0.82);
+  padding: 2.4rem;
+  max-width: 420px;
   margin: 5rem auto;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(255, 215, 190, 0.16);
   text-align: center;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 215, 190, 0.15);
+  color: #fbe9d7;
 }
 
 .signup-container h2 {
-  margin-bottom: 1.5rem;
-  color: #333;
+  margin-bottom: 1.4rem;
+  color: #fce7d4;
+  font-family: "Libre Baskerville", "Playfair Display", Georgia, serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.8px;
 }
 
 .signup-container input {
   display: block;
   width: 100%;
-  padding: 0.75rem;
-  margin: 0.75rem 0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  margin: 0.65rem 0;
+  border: 1px solid rgba(255, 215, 190, 0.25);
+  border-radius: 12px;
   font-size: 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fbe9d7;
+  transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.signup-container input::placeholder {
+  color: rgba(251, 233, 215, 0.6);
+}
+
+.signup-container input:focus {
+  outline: none;
+  border-color: #f3c08f;
+  box-shadow: 0 0 12px rgba(243, 192, 143, 0.25);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .signup-container button {
   width: 100%;
-  padding: 0.75rem;
-  background-color: purple;
-  color: white;
+  padding: 0.95rem;
+  background: linear-gradient(120deg, #7a1023, #c04f3d, #dba255);
+  color: #0f0908;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top : 0.75rem;
+  transition: transform 0.2s ease, box-shadow 0.25s ease, filter 0.2s;
+  margin-top: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
 }
 
-.signup -container button:hover {
-  background-color: rgb(69, 0, 69);
+.signup-container button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(208, 120, 85, 0.35);
+  filter: brightness(1.05);
 }
 
 .error {
-  color: red;
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
+  color: #f08a8a;
+  font-size: 0.88rem;
+  margin-top: 0.4rem;
+  font-style: italic;
+}
+
+.status-banner {
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-align: left;
+}
+
+.error-banner {
+  background: rgba(240, 122, 101, 0.12);
+  border: 1px solid rgba(247, 214, 193, 0.35);
+  color: #f7d6c1;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.loading-card {
+  background: rgba(20, 12, 14, 0.9);
+  padding: 1.6rem 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 215, 190, 0.25);
+  color: #fbe9d7;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 3px solid rgba(247, 214, 193, 0.3);
+  border-top-color: #f3c08f;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 600px) {
+  .signup-container {
+    padding: 1.8rem;
+    max-width: 92%;
+    margin: 4rem auto;
+  }
 }

@@ -14,6 +14,8 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 export class Signup {
 
   signUpForm!: FormGroup;
+  isLoading = false;
+  errorMessage = '';
 
   constructor(private userServ: UserService, private router: Router, private fb:FormBuilder) {}
 
@@ -28,20 +30,20 @@ export class Signup {
 
   // You will need to use this function on your front end. look at the form in login.html, lines 3-7, to get an idea of how it works. 
   signUp(username: string, password: string, email: string) {
+    this.errorMessage = '';
+    this.isLoading = true;
     this.userServ.signUp(username, password, email).subscribe({
       next: user => {
+        this.isLoading = false;
         if (user) {
           this.router.navigate(['/wine-dashboard']);
         }
       },
       error: err => {
-        if (err.status === 409) {
-          alert('Signup Failed\nUsername already exists');
-        } else {
-          alert(
-            'Signup Failed\nDatabase is stateless and sleeps, wait 3 minutes and try again.\nDatabase will autostart after the first request is sent\nIf the problem persists after delay, contact developer: Dallas Wade.'
-          );
-        }
+        this.isLoading = false;
+        this.errorMessage = err.status === 409
+          ? 'Signup failed: Username already exists.'
+          : 'Signup failed: Database may be asleep. Wait a few minutes and try again. If it persists, contact the developer.';
       }
     });
   }

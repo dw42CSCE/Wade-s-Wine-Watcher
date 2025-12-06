@@ -46,4 +46,8 @@ export class WineDashboard {
   goToWine(id: number) {
     this.router.navigate(['/wine', id]);
   }
+
+  goToNewWine() {
+    this.router.navigate(['/newwine']);
+  }
 }

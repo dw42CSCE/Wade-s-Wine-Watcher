@@ -13,24 +13,26 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class Login {
 
   logInForm!: FormGroup;
+  isLoading = false;
+  errorMessage = '';
 
   constructor(private userServ: UserService, private router: Router, private fb:FormBuilder) {}
 
   login(username: string, password: string) {
+    this.errorMessage = '';
+    this.isLoading = true;
     this.userServ.login(username, password).subscribe({
       next: user => {
+        this.isLoading = false;
         if (user) {
           this.router.navigate(['/wine-dashboard']);
         }
       },
       error: err => {
-        if (err.status === 401) {
-          alert('Login Failed\nUsername or Password Incorrect');
-        } else {
-          alert(
-            'Login Failed\nDatabase is stateless and sleeps, wait 3 minutes and try again.\nDatabase will autostart after the first request is sent\nIf the problem persists after delay, contact developer: Dallas Wade.'
-          );
-        }
+        this.isLoading = false;
+        this.errorMessage = err.status === 401
+          ? 'Login failed: Username or password incorrect.'
+          : 'Login failed: Database may be asleep. Wait a few minutes and try again. If it persists, contact the developer.';
       }
     });
   }

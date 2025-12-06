@@ -3,57 +3,147 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(135deg, #faf7f2 0%, #f1e3d3 100%);
-  padding: 22px 26px;
-  border-radius: 16px;
+  background: linear-gradient(160deg, rgba(38, 22, 26, 0.92), rgba(16, 10, 12, 0.92));
+  padding: 24px 28px;
+  border-radius: 18px;
   margin: 16px 0;
   gap: 18px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(140, 110, 80, 0.2);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  backdrop-filter: blur(5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 215, 190, 0.14);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  backdrop-filter: blur(6px);
 }
 .wine-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(100, 60, 30, 0.2);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+  border-color: rgba(243, 192, 143, 0.35);
 }
 .delete-btn {
   margin-top: 12px;
-  padding: 6px 14px;
-  background-color: #a63ec5; /* nice purple */
-  color: #fff;
+  padding: 8px 14px;
+  background: rgba(240, 122, 101, 0.12);
+  color: #f7d6c1;
   font-size: 0.9rem;
-  border: none;
-  border-radius: 8px;
+  border: 1px solid rgba(247, 214, 193, 0.35);
+  border-radius: 10px;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .delete-btn:hover {
-  background-color: #872bb0;
-  transform: scale(1.05);
+  background-color: rgba(240, 122, 101, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  backdrop-filter: blur(4px);
+}
+
+.modal-card {
+  background: rgba(20, 12, 14, 0.92);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(255, 215, 190, 0.25);
+  color: #fbe9d7;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+  max-width: 420px;
+  width: 90%;
+}
+
+.modal-card h4 {
+  margin: 0 0 6px 0;
+}
+
+.modal-card p {
+  margin: 0 0 14px 0;
+  color: rgba(251, 233, 215, 0.85);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.secondary-btn,
+.danger-btn {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(247, 214, 193, 0.35);
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.25s ease, filter 0.2s;
+}
+
+.secondary-btn {
+  background: rgba(240, 122, 101, 0.12);
+  color: #f7d6c1;
+}
+
+.secondary-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+.danger-btn {
+  background: linear-gradient(120deg, #7a1023, #c04f3d, #dba255);
+  color: #0f0908;
+  border-color: rgba(247, 214, 193, 0.45);
+}
+
+.danger-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.4);
+  filter: brightness(1.05);
+}
+
+.secondary-btn:disabled,
+.danger-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 
 /* ---- BOTTLE PROGRESS SECTION ---- */
 .progress-bottles {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;                      /* tighter spacing */
+  gap: 8px;
   width: 100%;
   flex-wrap: nowrap;
-  overflow: hidden;              /* no scrollbars */
-  padding-bottom: 6px;
+  overflow: hidden;
+  padding: 10px 0 14px;
+}
+
+.progress-bottles::before {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: 12%;
+  right: 12%;
+  height: 4px;
+  background: linear-gradient(90deg, rgba(219, 162, 85, 0.4), rgba(240, 189, 131, 0.7), rgba(219, 162, 85, 0.4));
+  border-radius: 999px;
+  filter: blur(0.3px);
 }
 
 /* ---- IMAGES ---- */
 .wine-bottle {
-  width: 50px;                   /* ✅ smaller default bottle size */
+  width: 54px;
   height: auto;
   flex-shrink: 0;
-  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.15));
-  transition: transform 0.25s ease;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
+  transition: transform 0.25s ease, filter 0.25s ease;
 }
 
 .wine-bottle:hover {
@@ -61,38 +151,39 @@
 }
 
 .arrow {
-  width: 14px;                   /* ✅ smaller arrow size */
+  width: 16px;
   height: auto;
-  opacity: 0.7;
+  opacity: 0.85;
   flex-shrink: 0;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .arrow:hover {
   opacity: 1;
+  transform: translateX(1px);
 }
 
 /* ---- WINE DETAILS ---- */
 .wine-details {
   width: 100%;
   text-align: center;
-  color: #3a2e1f;
+  color: #f7d6c1;
 }
 
 .wine-details h3 {
-  font-family: "Playfair Display", serif;
-  font-size: 1.5rem;
-  color: #4a2c15;
+  font-family: "Libre Baskerville", "Playfair Display", Georgia, serif;
+  font-size: 1.45rem;
+  color: #fde6d2;
   margin-bottom: 8px;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.7px;
 }
 
 .wine-details .desc {
-  font-size: 0.95rem;
-  color: #5e4633;
-  line-height: 1.5;
-  margin-bottom: 10px;
-  max-width: 80%;
+  font-size: 0.98rem;
+  color: rgba(247, 214, 193, 0.82);
+  line-height: 1.6;
+  margin-bottom: 12px;
+  max-width: 90%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -101,21 +192,21 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  font-size: 0.9rem;
-  color: #3e3022;
+  font-size: 0.92rem;
+  color: rgba(247, 214, 193, 0.9);
 }
 
 .wine-details strong {
-  color: #7a5033;
+  color: #f3c08f;
 }
 
 /* ---- RESPONSIVE ---- */
 @media (max-width: 1200px) {
   .wine-bottle {
-    width: 45px;
+    width: 48px;
   }
   .arrow {
-    width: 12px;
+    width: 14px;
   }
 }
 
@@ -130,11 +221,11 @@
   }
 
   .wine-bottle {
-    width: 40px;
+    width: 42px;
   }
 
   .arrow {
-    width: 10px;
+    width: 12px;
   }
 
   .wine-details .desc {

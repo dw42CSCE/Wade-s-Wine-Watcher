@@ -28,4 +28,19 @@
     <button class="delete-btn" (click)="deleteWine($event)">Delete Wine</button>
   </div>
 
+  @if(showDeleteConfirm){
+    <div class="modal-overlay" (click)="cancelDelete($event)">
+      <div class="modal-card" (click)="$event.stopPropagation()">
+        <h4>Delete this wine?</h4>
+        <p>Are you sure you want to delete "{{ wine.name }}"? This action cannot be undone.</p>
+        <div class="modal-actions">
+          <button type="button" class="secondary-btn" (click)="cancelDelete($event)" [disabled]="isDeleting">Cancel</button>
+          <button type="button" class="danger-btn" (click)="confirmDelete($event)" [disabled]="isDeleting">
+            {{ isDeleting ? 'Deleting...' : 'Delete' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+
 </div>
